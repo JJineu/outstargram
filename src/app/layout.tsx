@@ -1,3 +1,4 @@
+import AuthContext from "@/context/AuthContext";
 import Footer from "./components/Footers";
 import Header from "./components/Header";
 import "./globals.css";
@@ -24,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={openSans.className}>
       <body className="flex flex-col w-full max-w-screen-2xl overflow-auto mx-auto">
-        <header className="sticky top-0 bg-white z-10 border-b">
-          <Header />
-        </header>
-        <main className="grow">{children}</main>
+        <AuthContext>
+          <header className="sticky top-0 bg-white z-10 border-b">
+            <Header />
+          </header>
+          <main className="grow">{children}</main>
+        </AuthContext>
         <Footer />
       </body>
     </html>
