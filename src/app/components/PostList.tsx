@@ -1,8 +1,9 @@
 "use client";
 
 import { SimplePost } from "@/model/post";
-import { DetailUser } from "@/model/user";
+import { GridLoader } from "react-spinners";
 import useSWR from "swr";
+import PostListCard from "./PostListCard";
 
 export default function PostList() {
   const {
@@ -12,11 +13,21 @@ export default function PostList() {
   } = useSWR<SimplePost[]>("/api/post");
   return (
     <>
-      <ul>
-        {posts && posts.map((post) => <li key={post.id}>{post.text}</li>)}
-      </ul>
-      {/* {(!users || users.length === 0) && <p>{`You don't have following`}</p>} */}
-      {/* {users && users.length > 0 &&} */}
+      <section>
+        {loading && (
+          <div className="text-center mt-32">
+            <GridLoader color="red" />
+          </div>
+        )}
+        <ul>
+          {posts &&
+            posts.map((post) => (
+              <li key={post.id} className="mb-4">
+                <PostListCard post={post} />
+              </li>
+            ))}
+        </ul>
+      </section>
     </>
   );
 }
