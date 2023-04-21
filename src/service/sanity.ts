@@ -1,4 +1,6 @@
 import { createClient } from "@sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export const client = createClient({
   projectId: process.env.SANATY_PROJECT_ID,
@@ -8,27 +10,8 @@ export const client = createClient({
   token: process.env.SANITY_SECRET_TOKEN,
 });
 
-// export type Post = {
-//   author: string;
-//   photo: string;
-//   like: number;
-//   comments: Comment[];
-// };
-// export type Comment = {
-//   author: string;
-//   commnet: string;
-// };
+const builder = imageUrlBuilder(client);
 
-// export default async function getUserPosts(): Promise<Post[]> {
-//   const posts = await client.fetch('*[_type == "post"]');
-//   return posts;
-// }
-// export async function createPost(post: Post) {
-//   const result = client.create(post);
-//   return result;
-// }
-
-// export async function updateDocumentTitle(_id, title) {
-//   const result = client.patch(_id).set({ title });
-//   return result;
-// }
+export function urlFor(source: SanityImageSource) {
+  return builder.image(source).width(800).url();
+}

@@ -1,5 +1,8 @@
-import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
-  return NextResponse.json('hihihi');
+export async function POST(request: Request) {
+  // const session = await getServerSession(authOptions);
+  // const user = session?.user;
+  const user = 1;
+
+  return user;
 }
