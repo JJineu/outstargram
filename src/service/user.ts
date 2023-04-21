@@ -2,7 +2,7 @@ import { client } from "./sanity";
 
 type OAuthUser = {
   id: string;
-  email?: string | null;
+  email: string | null;
   name?: string | null;
   username: string;
   image?: string | null;
