@@ -1,8 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 // import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     // GithubProvider({
     //   clientId: process.env.GITHUB_OAUTH_ID || "",
@@ -13,17 +13,21 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_OAUTH_SECRET || "",
     }),
   ],
+  callbacks: {
+    async session({ session }) {
+      console.log(session);
+      const user = session?.user;
+      if (user) {
+        session.user = {
+          ...user,
+          username: user.email?.split("@")[0] || '',
+        };
+      }
+      return session;
+    },
+  },
   pages: {
     signIn: "/auth/signin",
-    //     signOut: "/auth/signout",
-    //     error: "/auth/error", // Error code passed in query string as ?error=
-    //     verifyRequest: "/auth/verify-request", // (used for check email message)
-    //     newUser: "/",
-    //   },
-    //   callbacks: {
-    //     async session({}){
-    //         return session
-    //     }
   },
 };
 const handler = NextAuth(authOptions);
