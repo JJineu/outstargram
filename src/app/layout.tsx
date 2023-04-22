@@ -3,10 +3,11 @@ import Header from "./components/Header";
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import SWRConfigContext from "@/context/SWRConfigContext";
+import { Metadata } from "next";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: "Outstargram",
     template: "Outstargram | %s",
