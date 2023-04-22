@@ -1,5 +1,4 @@
 import AuthContext from "@/context/AuthContext";
-import Footer from "./components/Footers";
 import Header from "./components/Header";
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
@@ -34,7 +33,7 @@ export default function RootLayout({
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
         </AuthContext>
-        <Footer />
+        <div id="portal" />
       </body>
     </html>
   );
