@@ -1,5 +1,5 @@
-export default function page() {
-  return (
-    <div>page</div>
-  )
+import SearchBar from "../components/SearchBar";
+
+export default function SearchPage() {
+  return <SearchBar />;
 }
