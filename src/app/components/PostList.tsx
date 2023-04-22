@@ -10,6 +10,7 @@ export default function PostList() {
     data: posts,
     isLoading: loading,
     error,
+    mutate,
   } = useSWR<SimplePost[]>("/api/post");
   return (
     <>
