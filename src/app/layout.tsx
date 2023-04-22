@@ -31,7 +31,7 @@ export default function RootLayout({
               <Header />
             </div>
           </header>
-          <main className="w-full flex justify-center bg-neutral-50">
+          <main className="w-full flex justify-center max-w-screen-xl mx-auto bg-neutral-50">
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
         </AuthContext>
