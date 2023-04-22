@@ -17,8 +17,8 @@ export async function PUT(request: NextRequest) {
     return new Response("Bad Request", { status: 400 });
   }
 
-  const req = like ? dislikePost : likePost;
-  
+  const req = like ? likePost : dislikePost;
+
   return req(id, user.id)
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));

@@ -17,15 +17,17 @@ export default function ActionBar({ post }: Props) {
   const { id, likes, username, text, createdAt } = post;
   const { data: session } = useSession();
   const user = session?.user;
-  const [liked, setLiked] = useState(
-    user ? likes.includes(user.username) : false
-  );
+  // const [liked, setLiked] = useState(
+  //   user ? likes.includes(user.username) : false
+  // );
+  const liked = user ? likes.includes(user.username) : false;
   const [bookmarked, setBookmarked] = useState(false);
+  const { mutate } = useSWRConfig();
   const handleLike = (like: boolean) => {
     fetch("api/likes", {
       method: "PUT",
       body: JSON.stringify({ id, like }),
-    }).then(() => setLiked(like));
+    }).then(() => mutate("/api/post"));
   };
 
   return (
