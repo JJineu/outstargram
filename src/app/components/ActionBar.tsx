@@ -16,7 +16,7 @@ type Props = {
   onComment: (comment: Comment) => void;
 };
 export default function ActionBar({ post, children, onComment }: Props) {
-  const { id, likes, createdAt, comments } = post;
+  const { id, likes, createdAt } = post;
   const { user, setBookmark } = useMe();
   const { setLike } = usePosts();
 
@@ -31,7 +31,7 @@ export default function ActionBar({ post, children, onComment }: Props) {
   };
 
   const handleComment = (comment: string) => {
-    user && onComment({ comment, username: user.username, image: user.image });
+      user && onComment({ comment, username: user.username, image: user.image });
   };
   return (
     <>
