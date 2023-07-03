@@ -16,7 +16,7 @@ export default function FollowButton({ user }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isFetching, setIsFetching] = useState(false);
-  const isUpdateing = isPending || isFetching;
+  const isUpdating = isPending || isFetching;
 
   const showButton = loggedInUser && loggedInUser.username !== username;
   const following =
@@ -36,16 +36,16 @@ export default function FollowButton({ user }: Props) {
     <>
       {showButton && (
         <div className="relative">
-          {isUpdateing && (
+          {isUpdating && (
             <div className="absolute z-20 inset-0 flex justify-center items-center">
               <PulseLoader size={6} />
             </div>
           )}
           <Button
-          disabled={isUpdateing}
+            disabled={isUpdating}
             text={text}
             onClick={handleFollow}
-            red={text === "Unfollow"}
+            active={text === "Follow"}
           />
         </div>
       )}

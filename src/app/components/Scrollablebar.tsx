@@ -12,8 +12,6 @@ const responsive = {
   },
 };
 
-import React from "react";
-
 export default function Scrollablebar({
   children,
 }: {

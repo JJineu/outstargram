@@ -3,8 +3,8 @@
 import { SearchUser } from "@/model/user";
 import { FormEvent, useState } from "react";
 import useSWR from "swr";
-import GridSpinner from "./GridSpinner";
-import UserCard from "./UserCard";
+import GridSpinner from "../components/GridSpinner";
+import UserCard from "../components/UserCard";
 import useDebounce from "@/hooks/debounce";
 
 export default function SearchBar() {

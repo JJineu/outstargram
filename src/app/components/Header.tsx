@@ -17,16 +17,19 @@ const menu = [
     href: "/",
     icon: <HomeIcon />,
     clickedIcon: <HomeFillIcon />,
+    title: "Home",
   },
   {
     href: "/search",
     icon: <SearchIcon />,
     clickedIcon: <SearchFillIcon />,
+    title: "Search users",
   },
   {
     href: "/new",
     icon: <NewIcon />,
     clickedIcon: <NewFillIcon />,
+    title: "New post",
   },
 ];
 export default function Header() {
@@ -36,14 +39,14 @@ export default function Header() {
 
   return (
     <div className="flex justify-between items-center p-6">
-      <Link href="/">
-        <h1 className="font-bold text-3xl">{"Outstargram"}</h1>
+      <Link href="/" aria-label="Home">
+        <h1 className="text-2xl font-serif">{"Outstargram"}</h1>
       </Link>
       <nav>
         <ul className="flex gap-4 items-center p-4">
           {menu.map((item) => (
             <li key={item.href}>
-              <Link href={item.href}>
+              <Link href={item.href} aria-label={item.title}>
                 {pathName === item.href ? item.clickedIcon : item.icon}
               </Link>
             </li>

@@ -1,4 +1,3 @@
-import { SimpleUser } from "@/model/user";
 import { HomeUser } from "@/model/user";
 import { useCallback } from "react";
 import useSWR from "swr";

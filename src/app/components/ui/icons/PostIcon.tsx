@@ -1,5 +1,8 @@
 import { MdGridOn } from "react-icons/md";
 
-export default function PostIcon() {
-  return <MdGridOn className="w-3 h-3" />;
+type Props = {
+  className?: string;
+};
+export default function PostIcon({ className }: Props) {
+  return <MdGridOn className={className || "w-3 h-3"} />;
 }

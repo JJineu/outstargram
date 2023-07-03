@@ -31,18 +31,20 @@ export default function ActionBar({ post, children, onComment }: Props) {
   };
 
   const handleComment = (comment: string) => {
-      user && onComment({ comment, username: user.username, image: user.image });
+    user && onComment({ comment, username: user.username, image: user.image });
   };
   return (
     <>
       <div className="flex justify-between my-2 px-4">
         <ToggleButton
+          title={liked ? "unliked" : "liked"}
           toggled={liked}
           onToggle={handleLike}
           onIcon={<HeartFillIcon />}
           offIcon={<HeartIcon />}
         />
         <ToggleButton
+          title={bookmarked ? "unbookmarked" : "bookmarked"}
           toggled={bookmarked}
           onToggle={handleBookmarked}
           onIcon={<BookmarkFillIcon />}

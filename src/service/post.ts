@@ -1,9 +1,5 @@
 import { SimplePost } from "@/model/post";
 import { assetsURL, client, urlFor } from "./sanity";
-import { createReadStream } from "fs";
-import { basename } from "path";
-import { SanityDocument, SanityImageAssetDocument } from "@sanity/client";
-import { NextResponse } from "next/server";
 
 const simplePostProjection = `
     ...,
@@ -139,7 +135,6 @@ export async function createPost(userId: string, text: string, file: Blob) {
       // if (!result || !result.document || !result.document._id) {
       //   throw new Error("Unexpected response from asset creation");
       // }
-      console.log(result);
       return client.create(
         {
           _type: "post",

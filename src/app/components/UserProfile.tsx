@@ -3,6 +3,7 @@
 import { ProfileUser } from "@/model/user";
 import Avatar from "./Avatar";
 import FollowButton from "./FollowButton";
+import MessageButton from "./MessageButton";
 
 type Props = {
   user: ProfileUser;
@@ -22,6 +23,7 @@ export default function UserProfile({ user }: Props) {
         <div className="flex flex-col items-center md:flex-row">
           <h1 className="text-2xl md:mr-8 my-2 md:mb-0">{username}</h1>
           <FollowButton user={user} />
+          <MessageButton user={user} />
         </div>
         <ul className="my-4 flex gap-4">
           {info.map(({ title, data }, index) => (

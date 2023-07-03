@@ -32,7 +32,7 @@ export default function UserPosts({ user }: Props) {
           >
             <button className="scale-150 md:scale-100">{icon}</button>
             <span
-              className="hidden md:inline
+              className="hidden md:inline ml-2
             "
             >
               {type}

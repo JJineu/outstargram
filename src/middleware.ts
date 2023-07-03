@@ -31,5 +31,6 @@ export const config = {
     "/api/follow",
     "/api/me",
     "/api/posts/:path*",
+    "/api/socket",
   ],
 };
