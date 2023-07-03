@@ -59,7 +59,7 @@ export default function MessageRoom({ me, username }: Props) {
   };
 
   useEffect((): any => {
-    const socket = new (ClientIO as any)("http://localhost:3000", {
+    const socket = new (ClientIO as any)(process.env.NEXTAUTH_URL, {
       path: "/api/socket/io",
       addTrailingSlash: false,
     });
