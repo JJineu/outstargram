@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Overview
+인스타그램을 참고하여 만든 사이트입니다. 
 
-## Getting Started
 
-First, run the development server:
+## 개발 환경
+- nextjs 13.3.0
+- react-dom 18.0.11
+- socket.io 4.7.0
+- socket.io 4.7.0
+- tailwindcss 3.3.1
+- swr 2.1.3
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
+[https://outstargram.vercel.app/]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 주요 기능
+
+
+## Road Map
+- 메인 페이지
+  [x] 포스트 목록
+  [x] 팔로우 목록
+  [x] 네비게이션바
+- 포스트 상세 페이지
+  [x] 댓글 목록
+  [x] 좋아요, 북마크 기능
+  [x] 메인 페이지와 연동
+- 포스트 생성 페이지
+  [x] 이미지 업로드
+- 검색 페이지
+  [x] **debounce 기능 사용**
+- 유저 상세 페이지
+- 로그인
+  [x] Next-auth google 사용
+  [x] **secssion, cache 사용**
+
+**advanced(1.0.0)**
+- direct message 페이지
+  [x] 프로젝트에 websocket 적용
+  [] socket.io - namespace 적용
+  [] db 연결 - mongodb 사용
+  [] 무한스크롤 기능
+
