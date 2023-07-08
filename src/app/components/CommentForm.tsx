@@ -1,28 +1,25 @@
-"use client";
-import { FormEvent, useState } from "react";
-import SmileIcon from "./ui/icons/SmileIcon";
-import useSWR from "swr";
+'use client';
+import { FormEvent, useState } from 'react';
+import SmileIcon from './ui/icons/SmileIcon';
+import useSWR from 'swr';
 
 type Props = {
   onPostComment: (comment: string) => void;
 };
 export default function CommentForm({ onPostComment }: Props) {
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const buttonDisabled = comment.length === 0;
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onPostComment(comment);
-    setComment("");
+    setComment('');
   };
 
   return (
-    <form
-      className="flex px-3 items-center border-t border-neutral-300"
-      onSubmit={handleSubmit}
-    >
+    <form className="flex px-2 items-center border-t border-neutral-300" onSubmit={handleSubmit}>
       <SmileIcon />
       <input
-        className="w-full ml-2 border-none outline-none p-3"
+        className="w-full border-none outline-none p-3"
         type="text"
         placeholder="Add a comment..."
         required
@@ -30,9 +27,7 @@ export default function CommentForm({ onPostComment }: Props) {
         onChange={(e) => setComment(e.target.value)}
       />
       <button
-        className={`font-bold ml-2 ${
-          buttonDisabled ? "text-sky-300" : "text-sky-500"
-        }`}
+        className={`font-bold mr-2 ${buttonDisabled ? 'text-sky-300' : 'text-sky-500'}`}
         disabled={buttonDisabled}
       >
         Post

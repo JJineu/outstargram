@@ -1,28 +1,24 @@
-import AuthContext from "@/context/AuthContext";
-import Header from "./components/Header";
-import "./globals.css";
-import { Open_Sans } from "next/font/google";
-import SWRConfigContext from "@/context/SWRConfigContext";
-import { Metadata } from "next";
+import AuthContext from '@/context/AuthContext';
+import Header from './components/Header';
+import './globals.css';
+import { Open_Sans } from 'next/font/google';
+import SWRConfigContext from '@/context/SWRConfigContext';
+import { Metadata } from 'next';
 
-const openSans = Open_Sans({ subsets: ["latin"] });
+const openSans = Open_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Outstargram",
-    template: "Outstargram | %s",
+    default: 'Outstargram',
+    template: 'Outstargram | %s',
   },
-  description: "Create and share with your friends",
+  description: 'Create and share with your friends',
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon.ico',
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={openSans.className}>
       <body className="w-full bg-neutral-50 overflow-auto">

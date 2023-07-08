@@ -1,4 +1,4 @@
-import Avatar from "./Avatar";
+import Avatar from './Avatar';
 
 type Props = {
   image: string;
@@ -6,7 +6,7 @@ type Props = {
 };
 export default function PostUserAvatar({ image, username }: Props) {
   return (
-    <div className="flex items-center p-2">
+    <div className="hidden md:visible md:flex md:items-center md:p-2">
       <Avatar image={image} size="medium" highlight />
       <span className="text-gray-900 font-bold ml-2">{username}</span>
     </div>

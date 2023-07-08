@@ -1,5 +1,5 @@
-import { searchUsers } from "@/service/user";
-import { NextRequest, NextResponse } from "next/server";
+import { searchUsers } from '@/service/user';
+import { NextRequest, NextResponse } from 'next/server';
 
 type Context = {
   params: { keyword: string };

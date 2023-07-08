@@ -1,13 +1,11 @@
-import { SearchUser } from "@/model/user";
-import Link from "next/link";
-import Avatar from "./Avatar";
+import { SearchUser } from '@/types/user';
+import Link from 'next/link';
+import Avatar from './Avatar';
 
 type Props = {
   user: SearchUser;
 };
-export default function UserCard({
-  user: { name, username, image, following, followers },
-}: Props) {
+export default function UserCard({ user: { name, username, image, following, followers } }: Props) {
   return (
     <>
       <Link

@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
-import { follow, unFollow } from "@/service/user";
-import { withSessionUser } from "@/util/session";
+import { NextRequest, NextResponse } from 'next/server';
+import { follow, unFollow } from '@/service/user';
+import { withSessionUser } from '@/util/session';
 
 export async function PUT(request: NextRequest) {
   return withSessionUser(async (user) => {
     const { id: targetId, follow: isFollow } = await request.json();
 
     if (!targetId || isFollow == null) {
-      return new Response("Bad Request", { status: 400 });
+      return new Response('Bad Request', { status: 400 });
     }
 
     const req = isFollow ? follow : unFollow;

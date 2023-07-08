@@ -10,6 +10,6 @@ const GridLoader = dynamic(
 type Props = {
   color?: string;
 };
-export default function GridSpinner({ color = "red" }: Props) {
+export default function GridSpinner({ color = "skyblue" }: Props) {
   return <GridLoader color={color} />;
 }

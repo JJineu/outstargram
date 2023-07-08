@@ -1,11 +1,11 @@
-"use client";
-import { SimplePost } from "@/model/post";
-import Image from "next/image";
-import { useState } from "react";
-import ModalPortal from "./ui/ModalPortal";
-import PostModal from "./PostModal";
-import PostDetail from "./PostDetail";
-import { signIn, useSession } from "next-auth/react";
+'use client';
+import { SimplePost } from '@/types/post';
+import Image from 'next/image';
+import { useState } from 'react';
+import ModalPortal from './ui/ModalPortal';
+import PostModal from './PostModal';
+import PostDetail from './PostDetail';
+import { signIn, useSession } from 'next-auth/react';
 
 type Props = {
   post: SimplePost;
@@ -17,7 +17,7 @@ export default function PostGridCard({ post, priority = false }: Props) {
   const { data: session } = useSession();
   const handleOpenPost = () => {
     if (!session?.user) {
-      return signIn(); // or useRouter
+      return signIn();
     }
     setOpenModal(true);
   };

@@ -1,21 +1,16 @@
-import { Comment, FullPost } from "@/model/post";
-import { useCallback } from "react";
-import useSWR, { useSWRConfig } from "swr";
+import { Comment, FullPost } from '@/types/post';
+import { useCallback } from 'react';
+import useSWR, { useSWRConfig } from 'swr';
 
 async function addComment(id: string, comment: string) {
-  return fetch("/api/comments", {
-    method: "POST",
+  return fetch('/api/comments', {
+    method: 'POST',
     body: JSON.stringify({ id, comment }),
   }).then((res) => res.json());
 }
 
 export default function useFullPosts(postId: string) {
-  const {
-    data: post,
-    isLoading,
-    error,
-    mutate,
-  } = useSWR<FullPost>(`/api/post/${postId}`);
+  const { data: post, isLoading, error, mutate } = useSWR<FullPost>(`/api/post/${postId}`);
 
   const { mutate: globalMutate } = useSWRConfig();
 
@@ -32,7 +27,7 @@ export default function useFullPosts(postId: string) {
         populateCache: false,
         revalidate: false,
         rollbackOnError: true,
-      }).then(() => globalMutate("/api/post"));
+      }).then(() => globalMutate('/api/post'));
     },
     [post, mutate, globalMutate]
   );

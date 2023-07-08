@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { Comment, SimplePost } from "@/model/post";
-import Image from "next/image";
-import ActionBar from "./ActionBar";
-import { useState } from "react";
-import ModalPortal from "./ui/ModalPortal";
-import PostModal from "./PostModal";
-import PostDetail from "./PostDetail";
-import PostUserAvatar from "./PostUserAvatar";
-import usePosts from "@/hooks/posts";
+import { Comment, SimplePost } from '@/types/post';
+import Image from 'next/image';
+import ActionBar from './ActionBar';
+import { useState } from 'react';
+import ModalPortal from './ui/ModalPortal';
+import PostModal from './PostModal';
+import PostDetail from './PostDetail';
+import PostUserAvatar from './PostUserAvatar';
+import usePosts from '@/hooks/posts';
 
 type Props = {
   post: SimplePost;
@@ -42,10 +42,9 @@ export default function PostListCard({ post, priority = false }: Props) {
           </p>
         )}
         {comments > 1 && (
-          <button
-            className="font-bold my-2 text-sky-500"
-            onClick={() => setOpenModal(true)}
-          >{`View all ${comments - 1} comments`}</button>
+          <button className="font-bold my-2 text-sky-500" onClick={() => setOpenModal(true)}>
+            {`View all ${comments - 1} comments`}
+          </button>
         )}
       </ActionBar>
       {openModal && (

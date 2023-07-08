@@ -1,12 +1,12 @@
-import { Metadata } from "next";
-import MessageRoom from "../../components/MessageRoom";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
+import { Metadata } from 'next';
+import MessageRoom from '../../components/MessageRoom';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../api/auth/[...nextauth]/route';
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: "Message room",
-  description: "Send message to user",
+  title: 'Message room',
+  description: 'Send message to user',
 };
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
 export default async function MessagePage({ params: { username } }: Props) {
   const session = await getServerSession(authOptions);
   if (!session) {
-    redirect("/auth/signin");
+    redirect('/auth/signin');
   }
   return (
     <div className="flex flex-col w-full">

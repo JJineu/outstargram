@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { SearchUser } from "@/model/user";
-import { FormEvent, useState } from "react";
-import useSWR from "swr";
-import GridSpinner from "../components/GridSpinner";
-import UserCard from "../components/UserCard";
-import useDebounce from "@/hooks/debounce";
+import { SearchUser } from '@/types/user';
+import { FormEvent, useState } from 'react';
+import useSWR from 'swr';
+import GridSpinner from '../components/GridSpinner';
+import UserCard from '../components/UserCard';
+import useDebounce from '@/hooks/debounce';
+import useThrottle from '@/hooks/throttle'
 
 export default function SearchBar() {
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
   const debouncedKeyword = useDebounce(keyword);
-  const {
-    data: users,
-    isLoading,
-    error,
-  } = useSWR<SearchUser[]>(`/api/search/${debouncedKeyword}`);
+  // const throttle = useThrottle(keyword)
+  // const { data: users, isLoading, error } = useSWR<SearchUser[]>(`/api/search/${keyword}`);
+  // const { data: users, isLoading, error } = useSWR<SearchUser[]>(`/api/search/${throttle}`);
+  const { data: users, isLoading, error } = useSWR<SearchUser[]>(`/api/search/${debouncedKeyword}`);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { AuthUser } from "@/model/user";
-import React, { useState, useEffect, useRef } from "react";
-import { io as ClientIO } from "socket.io-client";
-import GridSpinner from "./GridSpinner";
+import { AuthUser } from '@/types/user';
+import React, { useState, useEffect, useRef } from 'react';
+import { io as ClientIO } from 'socket.io-client';
+import GridSpinner from './GridSpinner';
 
 interface IChatMessage {
   roomId?: string;
@@ -24,16 +24,14 @@ export default function MessageRoom({ me, username }: Props) {
 
   // init chat and message
   const [chatMessages, setChatMessages] = useState<IChatMessage[]>([]);
-  const [messageInput, setMessageInput] = useState<string>("");
+  const [messageInput, setMessageInput] = useState<string>('');
 
   // dispatch message to other users
-  const sendApiSocketChat = async (
-    chatMessage: IChatMessage
-  ): Promise<Response> => {
-    return await fetch("/api/socket/chat", {
-      method: "POST",
+  const sendApiSocketChat = async (chatMessage: IChatMessage): Promise<Response> => {
+    return await fetch('/api/socket/chat', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(chatMessage),
     });
@@ -48,7 +46,7 @@ export default function MessageRoom({ me, username }: Props) {
 
       const resp = await sendApiSocketChat(chatMessage);
 
-      if (resp.ok) setMessageInput("");
+      if (resp.ok) setMessageInput('');
     }
 
     (inputRef?.current as any).focus();
@@ -60,18 +58,19 @@ export default function MessageRoom({ me, username }: Props) {
 
   useEffect((): any => {
     const socket = new (ClientIO as any)(process.env.NEXTAUTH_URL, {
-      path: "/api/socket/io",
+      path: '/api/socket/io',
       addTrailingSlash: false,
     });
+    console.log('startr222222');
 
     // log socket connection
-    socket.on("connect", () => {
-      console.log("SOCKET CONNECTED!", socket.id);
+    socket.on('connect', () => {
+      console.log('SOCKET CONNECTED!', socket.id);
       setConnected(true);
     });
 
     // update chat on new message dispatched
-    socket.on("message", (message: IChatMessage) => {
+    socket.on('message', (message: IChatMessage) => {
       chatMessages.push(message);
       setChatMessages([...chatMessages]);
     });
@@ -97,13 +96,11 @@ export default function MessageRoom({ me, username }: Props) {
         <div className="flex-1 flex-col p-4 font-sans">
           {chatMessages.length ? (
             chatMessages.map((chatMessage, i) => (
-              <div key={"msg_" + i} className="flex flex-row">
-                {chatMessage.userName === me.username ? "" : ""}
+              <div key={'msg_' + i} className="flex flex-row">
+                {chatMessage.userName === me.username ? '' : ''}
                 <span
                   className={`m-1 p-1 px-3 rounded-full ${
-                    chatMessage.userName === me.username
-                      ? "bg-blue-500 text-white ml-auto"
-                      : "bg-gray-400 text-black"
+                    chatMessage.userName === me.username ? 'bg-blue-500 text-white ml-auto' : 'bg-gray-400 text-black'
                   }`}
                 >
                   {chatMessage.message}
@@ -111,9 +108,7 @@ export default function MessageRoom({ me, username }: Props) {
               </div>
             ))
           ) : (
-            <div className="text-lg text-center text-gray-600 py-6">
-              Start new messages!
-            </div>
+            <div className="text-lg text-center text-gray-600 py-6">Start new messages!</div>
           )}
         </div>
         <div className="bg-slate-300 p-4 h-20 sticky bottom-0">
@@ -123,13 +118,13 @@ export default function MessageRoom({ me, username }: Props) {
                 ref={inputRef}
                 type="text"
                 value={messageInput}
-                placeholder={connected ? "Message..." : "Connecting..."}
+                placeholder={connected ? 'Message...' : 'Connecting...'}
                 className="w-full h-full rounded-l-full shadow border border-r-0 pl-2 border-gray-200 text-black "
                 onChange={(e) => {
                   setMessageInput(e.target.value);
                 }}
                 onKeyUp={(e) => {
-                  if (e.key === "Enter") {
+                  if (e.key === 'Enter') {
                     sendMessage();
                   }
                 }}

@@ -1,17 +1,10 @@
-import { ProfileUser, SearchUser } from "@/model/user";
-import { client } from "./sanity";
+import { ProfileUser, SearchUser, AuthUser } from '@/types/user';
+import { client } from './sanity';
 
-type OAuthUser = {
-  id: string;
-  email: string | null;
-  name?: string | null;
-  username: string;
-  image?: string | null;
-};
-export async function addUser({ id, username, email, name, image }: OAuthUser) {
+export async function addUser({ id, username, email, name, image }: AuthUser) {
   return client.createIfNotExists({
     _id: id,
-    _type: "user",
+    _type: 'user',
     username,
     email,
     name,
@@ -19,6 +12,7 @@ export async function addUser({ id, username, email, name, image }: OAuthUser) {
     following: [],
     followers: [],
     bookmarks: [],
+    roomlist: [],
   });
 }
 
@@ -35,15 +29,13 @@ export async function getUserByUsername(username: string) {
 }
 
 export async function searchUsers(keyword?: string) {
-  const query = keyword
-    ? `&& (name match "${keyword}") || (username match "${keyword}")`
-    : "";
+  const query = keyword ? `&& (name match "${keyword}") || (username match "${keyword}")` : '';
   return client
     .fetch(
       `*[_type == "user" ${query}]{
-      ..., 
-      "following": count(following),
-      "followers": count(followers),
+        ..., 
+        "following": count(following),
+        "followers": count(followers),
       }`
     )
     .then((users) =>
@@ -78,7 +70,7 @@ export async function addBookmark(userId: string, postId: string) {
   return client
     .patch(userId)
     .setIfMissing({ bookmarks: [] })
-    .append("bookmarks", [{ _ref: postId, _type: "reference" }])
+    .append('bookmarks', [{ _ref: postId, _type: 'reference' }])
     .commit({ autoGenerateArrayKeys: true });
 }
 
@@ -93,14 +85,10 @@ export async function follow(myId: string, targetId: string) {
   return client
     .transaction()
     .patch(myId, (user) =>
-      user
-        .setIfMissing({ following: [] })
-        .append("following", [{ _ref: targetId, _type: "reference" }])
+      user.setIfMissing({ following: [] }).append('following', [{ _ref: targetId, _type: 'reference' }])
     )
     .patch(targetId, (user) =>
-      user
-        .setIfMissing({ followers: [] })
-        .append("followers", [{ _ref: myId, _type: "reference" }])
+      user.setIfMissing({ followers: [] }).append('followers', [{ _ref: myId, _type: 'reference' }])
     )
     .commit({ autoGenerateArrayKeys: true });
 }

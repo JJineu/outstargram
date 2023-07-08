@@ -6,7 +6,7 @@ export type AuthUser = {
   image?: string;
 };
 
-export type SimpleUser = Pick<AuthUser, "username" | "image">;
+export type SimpleUser = Pick<AuthUser, 'username' | 'image'>;
 
 export type HomeUser = AuthUser & {
   following: SimpleUser[];

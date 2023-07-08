@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getPost } from "@/service/post";
-import { withSessionUser } from "@/util/session";
+import { NextRequest, NextResponse } from 'next/server';
+import { getPost } from '@/service/post';
+import { withSessionUser } from '@/util/session';
 
 type Context = {
   params: { id: string };

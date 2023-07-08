@@ -1,38 +1,31 @@
-import { useCacheKeys } from "@/context/CacheKeysContext";
-import { Comment, SimplePost } from "@/model/post";
-import { useCallback } from "react";
-import useSWR from "swr";
+import { useCacheKeys } from '@/context/CacheKeysContext';
+import { Comment, SimplePost } from '@/types/post';
+import { useCallback } from 'react';
+import useSWR from 'swr';
 
 async function updateLike(id: string, like: boolean) {
-  return fetch("/api/likes", {
-    method: "PUT",
+  return fetch('/api/likes', {
+    method: 'PUT',
     body: JSON.stringify({ id, like }),
   }).then((res) => res.json());
 }
 
 async function addComment(id: string, comment: string) {
-  return fetch("/api/comments", {
-    method: "POST",
+  return fetch('/api/comments', {
+    method: 'POST',
     body: JSON.stringify({ id, comment }),
   }).then((res) => res.json());
 }
 
 export default function usePosts() {
   const cacheKeys = useCacheKeys();
-  const {
-    data: posts,
-    isLoading,
-    error,
-    mutate,
-  } = useSWR<SimplePost[]>(cacheKeys.postsKey);
+  const { data: posts, isLoading, error, mutate } = useSWR<SimplePost[]>(cacheKeys.postsKey);
 
   const setLike = useCallback(
     (post: SimplePost, username: string, like: boolean) => {
       const newPost = {
         ...post,
-        likes: like
-          ? [...post.likes, username]
-          : post.likes.filter((item) => item !== username),
+        likes: like ? [...post.likes, username] : post.likes.filter((item) => item !== username),
       };
       const newPosts = posts?.map((p) => (p.id === post.id ? newPost : p));
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProfileUser } from "@/model/user";
+import { ProfileUser } from '@/types/user';
 import Button from "./ui/Button";
 import { useMe } from "@/hooks/me";
 import { useRouter } from "next/navigation";

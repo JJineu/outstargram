@@ -1,12 +1,12 @@
-"use client";
-import { AuthUser } from "@/model/user";
-import PostUserAvatar from "./PostUserAvatar";
-import FIlesIcon from "./ui/icons/FIlesIcon";
-import Button from "./ui/Button";
-import { ChangeEvent, DragEvent, FormEvent, useRef, useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import GridSpinner from "./GridSpinner";
+'use client';
+import { AuthUser } from '@/types/user';
+import PostUserAvatar from './PostUserAvatar';
+import FIlesIcon from './ui/icons/FIlesIcon';
+import Button from './ui/Button';
+import { ChangeEvent, DragEvent, FormEvent, useRef, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import GridSpinner from './GridSpinner';
 
 type Props = {
   user: AuthUser;
@@ -26,9 +26,9 @@ export default function NewPost({ user }: Props) {
     }
   };
   const handleDrag = (e: DragEvent) => {
-    if (e.type === "dragenter") {
+    if (e.type === 'dragenter') {
       setDragging(true);
-    } else if (e.type === "dragleave") {
+    } else if (e.type === 'dragleave') {
       setDragging(false);
     }
   };
@@ -49,16 +49,16 @@ export default function NewPost({ user }: Props) {
     if (!file) return;
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("text", textRef.current?.value ?? "");
+    formData.append('file', file);
+    formData.append('text', textRef.current?.value ?? '');
 
-    fetch("/api/post", { method: "POST", body: formData }) //
+    fetch('/api/post', { method: 'POST', body: formData }) //
       .then((res) => {
         if (!res.ok) {
           setError(`${res.status} ${res.statusText}`);
           return;
         }
-        router.push("/");
+        router.push('/');
       })
       .catch((err) => setError(err.toString()))
       .finally(() => setLoading(false));
@@ -71,24 +71,13 @@ export default function NewPost({ user }: Props) {
           <GridSpinner />
         </div>
       )}
-      {error && (
-        <p className="w-full bg-red-100 text-red-600 text-center p-4 mb-4 font-bold">
-          {error}
-        </p>
-      )}
-      <PostUserAvatar username={user.username} image={user.image ?? ""} />
+      {error && <p className="w-full bg-red-100 text-red-600 text-center p-4 mb-4 font-bold">{error}</p>}
+      <PostUserAvatar username={user.username} image={user.image ?? ''} />
       <form className="w-full flex flex-col mt-2" onSubmit={handleSubmit}>
-        <input
-          className="hidden"
-          name="input"
-          id="input-upload"
-          type="file"
-          accept="image/*"
-          onChange={handleChange}
-        />
+        <input className="hidden" name="input" id="input-upload" type="file" accept="image/*" onChange={handleChange} />
         <label
           className={`w-full h-60 flex flex-col items-center justify-center  ${
-            !file && "border-2 border-sky-500 border-dashed"
+            !file && 'border-2 border-sky-500 border-dashed'
           }`}
           htmlFor="input-upload"
           onDragEnter={handleDrag}
@@ -96,9 +85,7 @@ export default function NewPost({ user }: Props) {
           onDragOver={handleDragOver}
           onDrop={handleDrop}
         >
-          {dragging && (
-            <div className="absoulte inset-0 z-10 bg-sky-500/20 pointer-events-none" />
-          )}
+          {dragging && <div className="absoulte inset-0 z-10 bg-sky-500/20 pointer-events-none" />}
           {!file && (
             <div className="flex flex-col items-center pointer-events-none">
               <FIlesIcon />
@@ -107,13 +94,7 @@ export default function NewPost({ user }: Props) {
           )}
           {file && (
             <div className="relative w-full aspect-square">
-              <Image
-                className="object-cover"
-                src={URL.createObjectURL(file)}
-                alt="local file"
-                fill
-                sizes="650px"
-              />
+              <Image className="object-cover" src={URL.createObjectURL(file)} alt="local file" fill sizes="650px" />
             </div>
           )}
         </label>
@@ -123,7 +104,7 @@ export default function NewPost({ user }: Props) {
           id="input-text"
           required
           rows={10}
-          placeholder={"Write a caption"}
+          placeholder={'Write a caption'}
           ref={textRef}
         />
         <Button text="Publish" onClick={() => {}} />

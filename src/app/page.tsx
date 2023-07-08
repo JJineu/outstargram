@@ -1,16 +1,16 @@
-import FollowingBar from "./components/FollowingBar";
-import PostList from "./components/PostList";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
-import SideBar from "./components/SideBar";
+import FollowingBar from './components/FollowingBar';
+import PostList from './components/PostList';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]/route';
+import { redirect } from 'next/navigation';
+import SideBar from './components/SideBar';
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
 
   if (!user) {
-    redirect("/auth/signin");
+    redirect('/auth/signin');
   }
   return (
     <section className="w-full flex flex-col md:flex-row max-w-[850px] p-4">

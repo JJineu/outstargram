@@ -1,5 +1,5 @@
-import React from "react";
-import CloseIcon from "./ui/icons/CloseIcon";
+import React from 'react';
+import CloseIcon from './ui/icons/CloseIcon';
 
 type Props = {
   children: React.ReactNode;
@@ -15,13 +15,10 @@ export default function PostModal({ onClose, children }: Props) {
         }
       }}
     >
-      <button
-        className="fixed top-0 right-0 p-8 text-white"
-        onClick={() => onClose()}
-      >
+      <button className="fixed top-0 right-0 p-8 text-white" onClick={() => onClose()}>
         <CloseIcon />
       </button>
-      <div className="bg-white w-4/5 h-2/5 max-w-7xl">{children}</div>
+      <div className="bg-white w-5/6 h-4/5 max-w-7xl">{children}</div>
     </section>
   );
 }

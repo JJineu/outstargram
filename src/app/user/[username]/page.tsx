@@ -1,9 +1,9 @@
-import { getUserForProfile } from "@/service/user";
-import { notFound } from "next/navigation";
-import UserProfile from "@/app/components/UserProfile";
-import UserPosts from "@/app/components/UserPosts";
-import { Metadata } from "next";
-import { cache } from "react";
+import { getUserForProfile } from '@/service/user';
+import { notFound } from 'next/navigation';
+import UserProfile from '@/app/components/UserProfile';
+import UserPosts from '@/app/components/UserPosts';
+import { Metadata } from 'next';
+import { cache } from 'react';
 
 type Props = {
   params: {
@@ -26,9 +26,7 @@ export default async function UserPage({ params: { username } }: Props) {
   );
 }
 
-export async function generateMetadata({
-  params: { username },
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { username } }: Props): Promise<Metadata> {
   const user = await getUser(username);
   return {
     title: `${user?.name} (@${user?.username}) • Outstargram Photos`,

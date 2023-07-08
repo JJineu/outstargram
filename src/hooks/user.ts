@@ -1,4 +1,4 @@
-import { HomeUser } from "@/model/user";
+import { HomeUser } from '@/types/user';
 import { useCallback } from "react";
 import useSWR from "swr";
 
